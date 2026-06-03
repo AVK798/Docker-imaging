@@ -7,20 +7,28 @@ services:
     depends_on:
      - login
      - todo
-     - users
   login:
    image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/login:latest
    container_name: login
    depends_on:
     - users
+   environment:
+    USERS_API_ADDRESS: "users:8080"
+    AUTH_API_PORT: "3001"
   todo:
     image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/todo:latest
     container_name: todo
     depends_on:
      - redis
+    environment:
+     REDIS_HOST: redis
+     TODO_API_PORT: "3002"
   users:
     image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/users:latest
     container_name: users
+    environment:
+      AUTH_API_PORT: "8080"
+
   redis:
     image: redis
     container_name: redis
