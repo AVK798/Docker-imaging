@@ -4,12 +4,20 @@ services:
     container_name: frontend
     ports:
       - "80:80"
+    depends_on:
+     - login
+     - todo
+     - users
   login:
    image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/login:latest
    container_name: login
+   depends_on:
+    - users
   todo:
     image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/todo:latest
     container_name: todo
+    depends_on:
+     - redis
   users:
     image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/users:latest
     container_name: users
