@@ -1,0 +1,18 @@
+services:
+  frontend:
+    image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/frontend:latest
+    container_name: frontend
+    ports:
+      - "80:80"
+  login:
+   image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/login:latest
+   container_name: login
+  todo:
+    image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/todo:latest
+    container_name: todo
+  users:
+    image: 400138960249.dkr.ecr.us-east-1.amazonaws.com/users:latest
+    container_name: users
+  redis:
+    image: redis
+    container_name: redis
